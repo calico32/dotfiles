@@ -1,0 +1,15 @@
+{
+  "Lua.runtime.version": "LuaJIT",
+  "Lua.telemetry.enable": false,
+  "Lua.diagnostics.globals": [
+    "screen",
+    "client",
+    "awesome",
+    "tag",
+    "root",
+    "process",
+    "dbus",
+    "_it"
+  ],
+  "Lua.workspace.library": ["/usr/share/awesome/lib"]
+}

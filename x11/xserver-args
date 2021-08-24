@@ -1,0 +1,21 @@
+#!/bin/bash
+
+errcho() { echo >&2 $@; }
+
+args=${XSERVER_ARGS:-"-nolisten tcp -ardelay 200 -arinterval 33 -keeptty"}
+
+case "$1" in
+"" | bash | zsh | posix)
+  echo "XSERVER_ARGS=\"$args\""
+  ;;
+fish)
+  echo "set XSERVER_ARGS \"$args\""
+  ;;
+plain)
+  echo $args
+  ;;
+*)
+  errcho "invalid shell"
+  exit 1
+  ;;
+esac

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+eval $(bash $XDG_CONFIG_HOME/x11/xserver-args)
+
+exec /usr/bin/Xorg $XSERVER_ARGS "$@" vt$XDG_VTNR

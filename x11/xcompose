@@ -1,0 +1,9 @@
+include "%L"
+
+<Multi_key> <S> <I> : "Σ" # GREEK CAPITAL LETTER SIGMA
+<Multi_key> <S> <i> : "σ" # GREEK SMALL LETTER SIGMA
+<Multi_key> <s> <i> : "σ" # GREEK SMALL LETTER SIGMA
+<Multi_key> <b> <b> : "𝄫" U1D12B
+# <Multi_key> <#> <#> : "𝄪" U1D12A
+<Multi_key> <D> <e> : "Δ" U0394 # GREEK CAPITAL LETTER DELTA
+<Multi_key> <d> <e> : "Δ" U0394 # GREEK CAPITAL LETTER DELTA

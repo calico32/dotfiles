@@ -1,0 +1,38 @@
+[alacritty.files]
+"alacritty.yml" = "~/.config/alacritty/alacritty.yml"
+
+[bat.files]
+"bat.sh" = "~/.config/bat/config"
+
+[cava.files]
+"cava.ini" = "~/.config/cava/config"
+
+[fish]
+depends = ["starship"]
+
+[fish.files]
+"fish/config.fish" = "~/.config/fish/config.fish"
+"fish/fish_plugins" = "~/.config/fish/fish_plugins"
+"fish/environment.fish" = "~/.config/fish/conf.d/environment.fish"
+
+[fontconfig.files]
+fontconfig = "~/.config/fontconfig"
+
+[gtk.files]
+"gtk2.ini" = "~/.config/gtk-2.0/gtkrc"
+"gtk3.ini" = "~/.config/gtk-3.0/settings.ini"
+
+[nvim.files]
+"nvim.vim" = "~/.config/nvim/init.vim"
+
+[picom.files]
+"picom.conf" = "~/.config/picom/picom.conf"
+
+[starship.files]
+"starship.toml" = "~/.config/starship/starship.toml"
+
+[x11.files]
+x11 = "~/.config/x11"
+
+[xdg.files]
+"xdg-user-dirs.sh" = "~/.config/user-dirs.dirs"
