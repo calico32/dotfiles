@@ -29,7 +29,7 @@ fontconfig = "~/.config/fontconfig"
 "picom.conf" = "~/.config/picom/picom.conf"
 
 [starship.files]
-"starship.toml" = "~/.config/starship/starship.toml"
+"starship.toml" = "~/.config/starship.toml"
 
 [x11.files]
 x11 = "~/.config/x11"

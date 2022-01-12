@@ -1,77 +1,65 @@
+# format = "$all"
+
+# format = """$character"""
+# right_format = """$all"""
+
 [status]
-format = "[$status]($style) "
+format = '[$common_meaning$signal_name$maybe_int]($style) '
+pipestatus = true
 disabled = false
-
-
+[line_break]
+disabled = false
+[shlvl]
+disabled = false
+threshold = 3
+symbol = "↕️ "
+[git_metrics]
+disabled = false
 
 [aws]
 symbol = " "
-
 [conda]
 symbol = " "
-
 [dart]
 symbol = " "
-
 [directory]
 read_only = " "
-
-[docker]
-symbol = " "
-
 [elixir]
 symbol = " "
-
 [elm]
 symbol = " "
-
 [git_branch]
 symbol = " "
-
 [golang]
 symbol = " "
-
-[haskell]
-symbol = " "
-
+# [haskell]
+# symbol = " "
 [hg_branch]
 symbol = " "
-
 [java]
 symbol = " "
-
 [julia]
 symbol = " "
-
 [memory_usage]
 symbol = " "
-
+disabled = false
 [nim]
 symbol = " "
-
 [nix_shell]
 symbol = " "
-
 [nodejs]
 symbol = " "
-
 [package]
 symbol = " "
-
 [perl]
 symbol = " "
-
 [php]
 symbol = " "
-
 [python]
 symbol = " "
-
 [ruby]
 symbol = " "
-
 [rust]
 symbol = " "
-
 [swift]
 symbol = "ﯣ "
