@@ -111,6 +111,10 @@ function rm -w rm
     command rm -v $argv
 end
 
+function mv -w mv
+    command mv -vi $argv
+end
+
 function mvn -w mvn
     command mvn -gs "$XDG_CONFIG_HOME/maven/settings.xml" $argv
 end
