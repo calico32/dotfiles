@@ -28,6 +28,9 @@ fontconfig = "~/.config/fontconfig"
 [picom.files]
 "picom.conf" = "~/.config/picom/picom.conf"
 
+[scripts.files]
+"scripts" = "~/.local/bin"
+
 [starship.files]
 "starship.toml" = "~/.config/starship.toml"
 
@@ -36,3 +39,5 @@ x11 = "~/.config/x11"
 
 [xdg.files]
 "xdg-user-dirs.sh" = "~/.config/user-dirs.dirs"
+
+

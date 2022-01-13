@@ -1,0 +1,71 @@
+#!/bin/bash
+
+set -e
+
+OPTS=$(getopt -s sh -o "stiwn" -l "stage,typescript,interactive-tools,workspace-tools,node-modules" -- "$@")
+
+if [ $? != 0 ]; then
+  echo "Failed parsing options." >&2
+  exit 1
+fi
+
+eval set -- "$OPTS"
+
+STAGE=false
+TYPESCRIPT=false
+INTERACTIVE_TOOLS=false
+WORKSPACE_TOOLS=false
+NODE_MODULES=false
+
+while true; do
+  case "$1" in
+  -s | --stage)
+    STAGE=true
+    shift
+    ;;
+  -t | --typescript)
+    TYPESCRIPT=true
+    shift
+    ;;
+  -i | --interactive-tools)
+    INTERACTIVE_TOOLS=true
+    shift
+    ;;
+  -w | --workspace-tools)
+    WORKSPACE_TOOLS=true
+    shift
+    ;;
+  -n | --node-modules)
+    NODE_MODULES=true
+    shift
+    ;;
+  --)
+    shift
+    break
+    ;;
+  *) break ;;
+  esac
+done
+
+yarn set version stable
+
+$STAGE && yarn plugin import stage
+$TYPESCRIPT && yarn plugin import typescript
+$INTERACTIVE_TOOLS && yarn plugin import interactive-tools
+$WORKSPACE_TOOLS && yarn plugin import workspace-tools
+
+$NODE_MODULES && {
+  if grep -q "enableGlobalCache" .yarnrc.yml; then
+    echo "Global cache already enabled"
+  else
+    echo "enableGlobalCache: true" >>.yarnrc.yml
+  fi
+
+  if grep -q "nodeLinker" .yarnrc.yml; then
+    echo "Node linker already set"
+  else
+    echo "nodeLinker: node-modules" >>.yarnrc.yml
+  fi
+
+}
+yarn

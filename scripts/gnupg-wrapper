@@ -1,0 +1,4 @@
+#!/bin/sh
+
+/usr/bin/env GNUPGHOME=$HOME/.local/share/gnupg/ /usr/bin/gpg $@
+
