@@ -1,9 +1,8 @@
-local upower = require('lgi').require('UPowerGlib').Client()
-
-local awful = require('awful')
-local gtable = require('gears.table')
+local upower  = require('lgi').require('UPowerGlib').Client()
+local awful   = require('awful')
+local gtable  = require('gears.table')
 local naughty = require('naughty')
-local wibox = require('wibox')
+local wibox   = require('wibox')
 
 local battery = {}
 
@@ -51,8 +50,7 @@ function battery.new(args)
 
   widget.tooltip = awful.tooltip { objects = { widget } }
 
-  widget.device =
-    args.use_display_device and upower:get_display_device() or battery.get_device(args.device_path)
+  widget.device = args.use_display_device and upower:get_display_device() or battery.get_device(args.device_path)
 
   if type(args.create_callback) == 'function' then
     args.create_callback(widget, widget.device)
@@ -61,17 +59,17 @@ function battery.new(args)
   function widget:update()
     local remaining = string.format("%d%%", self.device.percentage)
     local icons = {
-      {10,  '', ''},
-      {20,  '', '<span size="xx-large"></span>'},
-      {30,  '', '<span size="xx-large"></span>'},
-      {40,  '', '<span size="xx-large"></span>'},
-      {50,  '', '<span size="xx-large"></span>'},
-      {60,  '', '<span size="xx-large"></span>'},
-      {70,  '', '<span size="xx-large"></span>'},
-      {80,  '', '<span size="xx-large"></span>'},
-      {90,  '', '<span size="xx-large"></span>'},
-      {98,  '', '<span size="xx-large"></span>'},
-      {999, '', '<span size="xx-large"></span>'}
+      { 10, '', '' },
+      { 20, '', '<span size="xx-large"></span>' },
+      { 30, '', '<span size="xx-large"></span>' },
+      { 40, '', '<span size="xx-large"></span>' },
+      { 50, '', '<span size="xx-large"></span>' },
+      { 60, '', '<span size="xx-large"></span>' },
+      { 70, '', '<span size="xx-large"></span>' },
+      { 80, '', '<span size="xx-large"></span>' },
+      { 90, '', '<span size="xx-large"></span>' },
+      { 98, '', '<span size="xx-large"></span>' },
+      { 999, '', '<span size="xx-large"></span>' }
     }
 
     local icon_unknown = ''

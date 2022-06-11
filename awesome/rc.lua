@@ -1,3 +1,4 @@
+pcall(require, "luarocks.loader")
 pcall(function() jit.on() end)
 
 local naughty = require('naughty')
@@ -9,15 +10,12 @@ naughty.connect_signal('request::display_error', function(message, startup)
   }
 end)
 
-local awful = require('awful')
 require('awful.autofocus')
-
-local array = require('array')
+local awful     = require('awful')
+local array     = require('array')
 local beautiful = require('beautiful')
-local gears = require('gears')
-local ruled = require('ruled')
-local delayed_call = require('gears.timer').delayed_call
--- local round_up_client_corners = require('shape').round_up_client_corners
+local gears     = require('gears')
+local ruled     = require('ruled')
 
 beautiful.init(os.getenv('XDG_CONFIG_HOME') .. '/awesome/theme.lua')
 
@@ -53,7 +51,7 @@ awful.screen.connect_for_each_screen(function(screen)
   -- set tags
   screen._tags = array.map(
     utils.table_pad_end(globals.tags, 9, function(i) return i end),
-    function(t) return '  ' .. t .. '  ' end
+    function(t) return '' .. t .. '' end
   )
   awful.tag(screen._tags, screen, awful.layout.layouts[1])
 
@@ -81,11 +79,11 @@ ruled.client.connect_signal("request::rules", function()
   ruled.client.append_rule {
     id = "floating",
     rule_any = {
-      instance = {'pinentry'},
-      class = {'feh', 'Msgcompose', 'KeePassXC', 'Blueman-manager'},
-      name = {'Event Tester', 'Page Unresponsive', 'Address Book', 'Zoom - Free Account'},
-      role = {'pop-up'},
-      type = {'dialog'},
+      instance = { 'pinentry' },
+      class    = { 'feh', 'Msgcompose', 'KeePassXC', 'Blueman-manager' },
+      name     = { 'Event Tester', 'Page Unresponsive', 'Address Book', 'Zoom - Free Account' },
+      role     = { 'pop-up' },
+      type     = { 'dialog' },
     },
     properties = { floating = true }
   }
@@ -93,8 +91,8 @@ ruled.client.connect_signal("request::rules", function()
   ruled.client.append_rule {
     id = "idea win0 floating",
     rule = {
-      class = {'jetbrains-idea'},
-      name = {'win0'},
+      class = { 'jetbrains-idea' },
+      name  = { 'win0' },
     },
     properties = { floating = true }
   }
@@ -102,31 +100,31 @@ ruled.client.connect_signal("request::rules", function()
   ruled.client.append_rule {
     id = "idea welcome floating",
     rule = {
-      class = {'jetbrains-idea'},
-      name = {'Welcome to IntelliJ IDEA'},
+      class = { 'jetbrains-idea' },
+      name  = { 'Welcome to IntelliJ IDEA' },
     },
     properties = { floating = true }
   }
 
   ruled.client.append_rule {
-    id = "not ytm floating",
-    rule = {
-      class = {'crx_cinhimbnkkaeohfgghhklpknlkffjgod'},
-      name = {'YouTube Music'},
+    id = "ytm floating",
+    rule_any = {
+      class = { 'crx_cinhimbnkkaeohfgghhklpknlkffjgod' },
+      name  = { 'YouTube Music' },
     },
-    properties = { floating = false, screen = 1, tag = awful.screen.focused()._tags[5] }
+    properties = { floating = false }
   }
 
   ruled.client.append_rule {
-    rule_any = { type = {'normal', 'dialog'} },
+    rule_any   = { type = { 'normal', 'dialog' } },
     properties = { titlebars_enabled = false }
   }
   ruled.client.append_rule {
-    rule_any = { class = {'discord', 'element'} },
+    rule_any   = { class = { 'discord', 'element' } },
     properties = { tag = awful.screen.focused()._tags[3] }
   }
   ruled.client.append_rule {
-    rule_any = { class = {'zoom'} },
+    rule_any   = { class = { 'zoom' } },
     properties = { tag = awful.screen.focused()._tags[4] }
   }
 end)
@@ -168,4 +166,6 @@ client.connect_signal('focus', function(c) c.border_color = beautiful.border_foc
 client.connect_signal('unfocus', function(c) c.border_color = beautiful.border_normal end)
 
 -- autostart
-awful.spawn('fish ' .. os.getenv('XDG_CONFIG_HOME') .. '/awesome/autostart.fish', nil, nil, 'autostart')
+-- awful.spawn('fish ' .. os.getenv('XDG_CONFIG_HOME') .. '/awesome/autostart.fish', nil, nil, 'autostart')
+
+awful.spawn.once('betterlockscreen -u ' .. os.getenv('XDG_DATA_HOME') .. '/wallpapers/current')

@@ -1,6 +1,9 @@
 [alacritty.files]
 "alacritty.yml" = "~/.config/alacritty/alacritty.yml"
 
+[awesome.files]
+"awesome" = "~/.config/awesome"
+
 [bat.files]
 "bat.sh" = "~/.config/bat/config"
 

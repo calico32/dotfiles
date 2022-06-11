@@ -16,6 +16,7 @@ set sa "$HOME/.steam/root/steamapps"
 #set nv "/sys/bus/pci/devices/0000:01:00.0"
 #set bl /sys/class/backlight/intel_backlight
 set ssd /run/media/$USER/ssd
+set fs "$XDG_DATA_HOME/pictures/flameshot"
 
 # vcs
 abbr -- gcm git commit --message
@@ -44,6 +45,7 @@ abbr -- jb journalctl -b --no-pager
 abbr -- jxe journalctl -xe
 abbr -- dm dmesg
 abbr -- s sudo systemctl
+abbr -- u systemctl --user
 abbr -- sp sudo pacman
 abbr -- sx startx
 abbr -- nvsx nvidia-startx
@@ -51,11 +53,22 @@ abbr -- nvsx nvidia-startx
 # other
 #abbr -- l ls -lah
 abbr -- n nvim
+abbr -- yt-dlp yt-dlp --cookies-from-browser brave+gnomekeyring:Default -vU
 abbr -- pkp pkill picom
 abbr -- ... cd ../..
 abbr -- .... cd ../../..
 abbr -- ..... cd ../../../..
 abbr -- ...... cd ../../../../..
+# thefuck --alias | source
+function fuck -d "Correct your previous console command"
+  set -l fucked_up_command $history[1]
+  env TF_SHELL=fish TF_ALIAS=fuck PYTHONIOENCODING=utf-8 thefuck $fucked_up_command THEFUCK_ARGUMENT_PLACEHOLDER $argv | read -l unfucked_command
+  if [ "$unfucked_command" != "" ]
+    eval $unfucked_command
+    builtin history delete --exact --case-sensitive -- $fucked_up_command
+    builtin history merge
+  end
+end
 
 # for f in ./functions/*.fish
 #     source $f
@@ -70,6 +83,25 @@ function sudo -d "Replacement for Bash 'sudo !!' command to run last command usi
     else
         command sudo $argv
     end
+end
+
+function tar-zstd-split
+    set input $argv[1]
+    set output $argv[2]
+    if not set -q argv[1]; or not set -q argv[2]
+        echo "usage: tar-zstd-split <input> <output.tar.zst.>"
+        return 1
+    end
+    if not set -q split_size
+        set split_size 200MB
+    end
+    if not set -q ZSTD_CLEVEL
+        set ZSTD_CLEVEL 19
+    end
+    if not set -q ZSTD_NBTHREADS
+        set ZSTD_NBTHREADS (nproc)
+    end
+    ZSTD_CLEVEL=$ZSTD_CLEVEL ZSTD_NBTHREADS=$ZSTD_NBTHREADS command tar -cv --use-compress-program=zstdmt $input | split --bytes=$split_size -a3 - $output
 end
 
 function c -w code-insiders
@@ -104,7 +136,11 @@ function gpus
 end
 
 function l -w exa
-    command exa --long --all --group --git $argv
+    command exa --long --all --git $argv
+end
+
+function lg -w exa
+    l -g
 end
 
 function rm -w rm

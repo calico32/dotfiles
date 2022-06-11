@@ -13,6 +13,8 @@ env:
   TERM: xterm-256color
 
 window:
+  # opacity: 1 #0.8
+  opacity: 0.98
   # Window dimensions (changes require restart)
   #
   # Specified in number of columns/lines, not pixels.
@@ -88,6 +90,9 @@ scrolling:
 
 font:
   size: 12
+  
+  normal:
+    family: JetBrains Mono
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -213,7 +218,6 @@ bell:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-#background_opacity: 1.0
 
 #selection:
 #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
@@ -295,7 +299,7 @@ bell:
 #triple_click: { threshold: 300 }
 
 # If this is `true`, the cursor is temporarily hidden when typing.
-#hide_when_typing: false
+hide_when_typing: true
 
 url:
   modifiers: Control

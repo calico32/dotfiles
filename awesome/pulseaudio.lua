@@ -12,7 +12,7 @@ local widget = wibox.widget {
   widget = wibox.widget.textbox,
 }
 
-widget.tooltip = awful.tooltip({ objects = { widget } })
+widget.tooltip = awful.tooltip { objects = { widget } }
 
 --- @param notify? boolean
 function widget:update(notify)
@@ -20,9 +20,9 @@ function widget:update(notify)
 
   awful.spawn.easy_async("pamixer --get-volume-human", function(stdout, stderr, reason, exit_code)
     local icons = {
-      {33, '奄'},
-      {66, '<span size="x-large">奔</span>'},
-      {999, '<span size="x-large">墳</span>'},
+      { 33, '奄' },
+      { 66, '<span size="x-large">奔</span>' },
+      { 999, '<span size="x-large">墳</span>' },
     }
 
     local icon_muted = '<span size="x-large">婢</span>'
@@ -66,7 +66,7 @@ end
 
 function widget:is_muted(callback)
   awful.spawn.easy_async("pamixer --get-mute", function(stdout, stderr, reason, exit_code)
-  local muted = string.find(stdout, 'true')
+    local muted = string.find(stdout, 'true')
     if muted == nil then
       callback(false)
     else
